@@ -277,6 +277,14 @@ main {
 
   .main-item {
     height: 190px;
+    position: none;
+  }
+
+  .main-item-info {
+    display: flex;
+    flex-direction: column;
+    top: 24px;
+    left: 24px;
   }
 
   .main-title > h1 {
@@ -294,5 +302,44 @@ main {
 
   .chip {
     font-size: 12px;
+  }
+
+  .news-parent {
+    flex-direction: column;
+  }
+
+  .news-child {
+    padding: 0;
+  }
+
+  .first {
+    width: 109px;
+    justify-content: center;
+    align-self: stretch;
+  }
+
+  .second {
+    width: 372px;
+  }
+
+  .third {
+    width: 84px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+
+  .third > img {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+
+  .fourth {
+    width: 193px;
+  }
+
+  .fifth {
+    width: 202px;
   }
 }
