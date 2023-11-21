@@ -1,18 +1,18 @@
 @font-face {
   font-family: "ALS Hauss";
-  src: url("../fonts/ALS_Hauss-Regular.eot");
+  src: url("../fonts/ALS_Hauss-Regular.woff");
   font-weight: 400;
 }
 
 @font-face {
   font-family: "ALS Hauss";
-  src: url("../fonts/ALS_Hauss-Medium.eot");
+  src: url("../fonts/ALS_Hauss-Medium.woff");
   font-weight: 500;
 }
 
 @font-face {
   font-family: "Navigo";
-  src: url("../fonts/Navigo-Bold-Web.eot");
+  src: url("../fonts/Navigo-Bold-Web.woff");
 }
 
 body {
@@ -83,7 +83,7 @@ main {
   text-align: left;
 }
 
-.main-item-info > h1 {
+.main-item-info > p {
   margin: 0;
   font-size: 14px;
   font-weight: 500;
@@ -101,9 +101,10 @@ main {
   line-height: 56px;
   text-align: left;
   margin-bottom: 0;
+  margin-top: 24px;
 }
 
-.main-title > h2 {
+.main-title > p {
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -127,7 +128,7 @@ main {
 .girl-on-rocket {
   position: absolute;
   right: -15px;
-  top: 10px;
+  top: 1px;
 }
 
 .cloud {
@@ -192,8 +193,16 @@ main {
   text-align: center;
 }
 
+.first p {
+  margin: 0;
+}
+
 .second {
   width: 372px;
+}
+
+.second p {
+  margin: 0;
 }
 
 .third {
@@ -251,7 +260,17 @@ main {
   color: #00a5bc;
 }
 
-@media (max-width: 800px) and (min-width: 480px) {
+.mobile {
+  display: none;
+}
+
+@media (max-width: 1024px) and (min-width: 800px) {
+  .girl-on-rocket {
+    top: -40px;
+    width: 400px;
+    height: 400px;
+  }
+
   .fourth {
     display: none;
     width: 84px;
@@ -266,7 +285,7 @@ main {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 799px) {
   body {
     font-size: 14px;
   }
@@ -289,6 +308,18 @@ main {
 
   .main-title > h1 {
     font-size: 24px;
+    line-height: 30px;
+    margin-top: 12px;
+  }
+
+  .course-btn {
+    width: 164px;
+    height: 32px;
+    font-size: 14px;
+    line-height: 22px;
+    padding: 5px 17px;
+
+    margin-top: 12px;
   }
 
   .girl-on-rocket,
@@ -302,6 +333,7 @@ main {
 
   .chip {
     font-size: 12px;
+    padding: 3px 12px;
   }
 
   .news-parent {
@@ -313,33 +345,50 @@ main {
   }
 
   .first {
-    width: 109px;
-    justify-content: center;
-    align-self: stretch;
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    /* align-self: stretch; */
   }
 
   .second {
-    width: 372px;
+    margin-top: 4px;
+  }
+
+  .second > p {
+    line-height: 22px;
+  }
+
+  .news-small-text {
+    margin-top: 4px;
+    line-height: 18px;
   }
 
   .third {
-    width: 84px;
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
+    display: none;
   }
 
-  .third > img {
-    width: 16px;
-    height: 16px;
-    margin-right: 4px;
+  .mobile {
+    display: flex;
+  }
+
+  .mobile > p {
+    display: none;
   }
 
   .fourth {
-    width: 193px;
+    display: none;
   }
 
   .fifth {
-    width: 202px;
+    margin-bottom: 24px;
+  }
+
+  .register-btn {
+    padding: 3px 12px;
+
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 18px;
   }
 }
