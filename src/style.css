@@ -63,7 +63,7 @@ header {
 /* main */
 /* section 1 */
 main {
-  max-width: 960px;
+  max-width: 1030px;
   margin: auto;
 }
 
@@ -198,7 +198,7 @@ main {
 }
 
 .second {
-  width: 372px;
+  width: 442px;
 }
 
 .second p {
@@ -208,8 +208,8 @@ main {
 .third {
   width: 84px;
   display: flex;
-  justify-content: center;
-  align-items: baseline;
+  justify-content: left;
+  /* align-items: baseline; */
 }
 
 .third > img {
@@ -224,6 +224,15 @@ main {
 
 .fifth {
   width: 212px;
+}
+
+.heading-title {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.like-number {
+  font-size: 14px;
 }
 
 .date-text {
@@ -258,6 +267,7 @@ main {
 
 .link-text {
   color: #00a5bc;
+  font-size: 14px;
 }
 
 .mobile {
@@ -368,6 +378,7 @@ main {
   line-height: 18px;
   font-weight: 400;
   color: #808185;
+  margin-bottom: 4px;
 }
 
 .register-active-btn {
@@ -378,8 +389,9 @@ main {
 }
 
 .comment-textarea {
-  height: 80px;
+  height: 56px;
   resize: none;
+  padding: 12px;
 }
 
 ::placeholder {
@@ -522,9 +534,9 @@ main {
 
   .register-btn {
     padding: 3px 12px;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 12px;
-    line-height: 18px;
+    height: 36px;
   }
 
   .modal {
@@ -536,9 +548,6 @@ main {
 
   .modal-content {
     margin: 32px;
-  }
-  .without-modal {
-    display: none;
   }
 
   .close-icon {
