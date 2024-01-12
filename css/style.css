@@ -412,6 +412,10 @@ main {
   font-weight: 500;
 }
 
+.hidden {
+  display: none;
+}
+
 @media (max-width: 1024px) and (min-width: 800px) {
   .girl-on-rocket {
     top: -40px;
