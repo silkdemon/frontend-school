@@ -414,6 +414,7 @@ main {
 
 .hidden {
   display: none;
+  transition: all 0.3s linear 0s;
 }
 
 @media (max-width: 1024px) and (min-width: 800px) {
