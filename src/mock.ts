@@ -1,18 +1,17 @@
-import _ from "lodash";
 
 const getRandomBoolean = () => {
   return _.sample([true, false]);
 };
 
 const getRandomDate = () => {
-  const randomDate = new Date(new Date() - Math.random() * 1e12);
+  const randomDate = new Date(new Date().getTime() - Math.random() * 1e12);
   const formattedRandomDate = `${randomDate.getFullYear()}/${
     randomDate.getMonth() + 1
   }/${randomDate.getDate()}`;
   return formattedRandomDate;
 };
 
-const getRandomNumberInRange = (min, max) => {
+const getRandomNumberInRange = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
