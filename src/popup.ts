@@ -23,7 +23,7 @@ for (let i = 0; i < registerButton.length; i++) {
 closeModalIcon.addEventListener("click", closeModal);
 
 // Закрытие модалки нажатием в другую область
-overlay.addEventListener("click", closeModal);
+// overlay.addEventListener("click", closeModal);
 
 // Закрытие модалки клавишей ESC
 document.addEventListener("keydown", function (e) {
