@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "ALS Hauss";
+  src: url("/fonts/ALS_Hauss-Regular.woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "ALS Hauss";
+  src: url("/fonts/ALS_Hauss-Medium.woff");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Navigo";
+  src: url("/fonts/Navigo-Bold-Web.woff");
+}
+
+body {
+  color: #2b2d33;
+  letter-spacing: 0em;
+  font-family: "ALS Hauss", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+    sans-serif;
+  font-weight: 500;
+}
