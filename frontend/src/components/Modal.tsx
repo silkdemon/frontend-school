@@ -1,8 +1,11 @@
-import { useEffect } from 'react';
 import '../styles/Modal.css'; // Импортируем стили
+import { CloseModalFunction } from '../types/types';
 
+interface MainProps {
+  closeModal: CloseModalFunction;
+}
 
-const Modal = ({ closeModal }) => {
+const Modal: React.FC<MainProps> = ({ closeModal }) => {
 
   return (
     <div className="modal-container overlay">
