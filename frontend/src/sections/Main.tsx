@@ -9,7 +9,8 @@ import MainSection from './MainSection';
 interface MainProps {
   openModal: OpenModalFunction;
 }
-
+// state для рендеринга данных в таблице
+// жизненный цикл реакт компонента
 const Main: React.FC<MainProps> = ({ openModal }) => {
   const events: EventItem[] = [
     {
