@@ -1,6 +1,10 @@
 package org.example.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import org.example.dto.SignInRequest;
+import org.example.dto.SignUpRequest;
 import org.example.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +19,16 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
-    public void register(@RequestBody RegistrationRequest request) {
-        userService.registerUser(request.username(), request.password());
+
+    @PostMapping("/signup")
+    @Operation(summary = "User registration")
+    public ResponseEntity<?> signUp(@RequestBody SignUpRequest request) {
+        return userService.signUp(request);
     }
 
-    public record RegistrationRequest(String username, String password) {}
+    @PostMapping("/signin")
+    @Operation(summary = "User authentication")
+    public ResponseEntity<?> signIn(@RequestBody SignInRequest request) {
+        return userService.signIn(request);
+    }
 }

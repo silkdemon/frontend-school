@@ -4,4 +4,11 @@ import org.example.model.Event;
 import org.example.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {}
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    boolean existsByUsername(String username); // <- Вот этот метод
+
+    // Дополнительные методы (например, для поиска пользователя)
+    Optional<User> findByUsername(String username);
+}

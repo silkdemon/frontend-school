@@ -2,9 +2,8 @@ package org.example.controller;
 
 import org.example.model.Event;
 import org.example.service.EventService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -19,5 +18,11 @@ public class EventController {
     @GetMapping
     public List<Event> getEvents() {
         return eventService.getAllEvents();
+    }
+
+
+    @PostMapping
+    public Event createEvent(@RequestBody Event event) {
+        return eventService.createEvent(event);
     }
 }
