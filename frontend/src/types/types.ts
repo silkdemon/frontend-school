@@ -7,5 +7,5 @@ export interface EventItem {
     registrationActive: boolean;
   }
   
-export type OpenModalFunction = () => void;
-export type CloseModalFunction = () => void;
+  export type OpenModalFunction = (event: EventItem) => void;
+  export type CloseModalFunction = () => void;

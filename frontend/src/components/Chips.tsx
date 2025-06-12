@@ -1,12 +1,26 @@
-import React from 'react';
+import React from "react";
 
-const Chips: React.FC = () => {
+interface ChipsProps {
+  currentCategory: string;
+  onCategoryChange: (category: string) => void;
+}
+
+const Chips: React.FC<ChipsProps> = ({ currentCategory, onCategoryChange }) => {
+  const categories = ["IT Academy", "Маркетинг", "Retail", "Остальные"];
+
   return (
     <ul className="chips">
-      <li className="chip chip-active">IT Academy</li>
-      <li className="chip chip-inactive">Маркетинг</li>
-      <li className="chip chip-inactive">Retail</li>
-      <li className="chip chip-inactive">Остальные</li>
+      {categories.map((category) => (
+        <li
+          key={category}
+          className={`chip ${
+            currentCategory === category ? "chip-active" : "chip-inactive"
+          }`}
+          onClick={() => onCategoryChange(category)}
+        >
+          {category}
+        </li>
+      ))}
     </ul>
   );
 };

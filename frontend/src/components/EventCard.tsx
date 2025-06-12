@@ -33,17 +33,13 @@ const EventCard: React.FC<EventCardProps> = ({ event, openModal }) => {
           ))}
         </div>
         <div className="news-child fifth">
-          <button
-            className={`register-btn ${
-              !event.registrationActive ? "disabled" : ""
-            }`}
-            onClick={() => event.registrationActive && openModal()}
-            disabled={!event.registrationActive}
-          >
-            {event.registrationActive
-              ? "Зарегистрироваться"
-              : "Регистрация закрыта"}
-          </button>
+        <button
+          className={`register-btn ${!event.registrationActive ? "register-inactive-btn" : ""}`}
+          onClick={() => event.registrationActive && openModal(event)}
+          disabled={!event.registrationActive}
+        >
+          {event.registrationActive ? "Зарегистрироваться" : "Регистрация закрыта"}
+        </button>
         </div>
       </div>
     </div>

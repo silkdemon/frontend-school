@@ -47,4 +47,3 @@ const getEventsArray = () => {
     }
     return arr;
 };
-console.log(getEventsArray());

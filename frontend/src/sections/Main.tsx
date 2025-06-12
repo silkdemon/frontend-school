@@ -11,6 +11,7 @@ interface MainProps {
 }
 
 const Main: React.FC<MainProps> = ({ openModal }) => {
+  const [currentCategory, setCurrentCategory] = useState<string>('IT Academy');
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,7 +19,7 @@ const Main: React.FC<MainProps> = ({ openModal }) => {
   useEffect(() => {
     const loadEvents = async () => {
       try {
-        const data = await fetchEvents();
+        const data = await fetchEvents(currentCategory);
         setEvents(data);
       } catch (err) {
         setError("Ошибка при загрузке событий");
@@ -29,7 +30,11 @@ const Main: React.FC<MainProps> = ({ openModal }) => {
     };
 
     loadEvents();
-  }, []);
+  }, [currentCategory]);
+
+  const handleCategoryChange = (category: string) => {
+    setCurrentCategory(category);
+  };
 
   if (loading) {
     return <div className="loader">Загрузка событий...</div>;
@@ -42,7 +47,10 @@ const Main: React.FC<MainProps> = ({ openModal }) => {
   return (
     <main>
       <MainSection />
-      <AllEventsSection />
+      <AllEventsSection 
+        currentCategory={currentCategory} 
+        onCategoryChange={handleCategoryChange} 
+      />
       <EventList events={events} openModal={openModal} />
     </main>
   );
