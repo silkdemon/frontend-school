@@ -3,12 +3,16 @@ import { EventItem } from "../types/types";
 
 // Функции генерации случайных данных
 const getRandomBoolean = () => Math.random() >= 0.5;
-const getRandomNumberInRange = (min: number, max: number) => 
+const getRandomNumberInRange = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
-  
+
 const getRandomDate = () => {
   const randomDate = new Date(Date.now() - Math.random() * 1e12);
-  return `${randomDate.getDate().toString().padStart(2, '0')}.${(randomDate.getMonth() + 1).toString().padStart(2, '0')}.${randomDate.getFullYear()}`;
+  return `${randomDate.getDate().toString().padStart(2, "0")}.${(
+    randomDate.getMonth() + 1
+  )
+    .toString()
+    .padStart(2, "0")}.${randomDate.getFullYear()}`;
 };
 
 const getRandomString = () => {
@@ -30,7 +34,7 @@ const getRandomName = () => {
 const getRandomEvent = (): EventItem => {
   const numAuthors = getRandomNumberInRange(1, 3);
   const authors = Array.from({ length: numAuthors }, getRandomName);
-  
+
   return {
     date: getRandomDate(),
     likes: getRandomNumberInRange(0, 100),
@@ -42,11 +46,15 @@ const getRandomEvent = (): EventItem => {
 };
 
 // Имитация API-запроса
-export const fetchEvents = (): Promise<EventItem[]> => {
+export const fetchEvents = (category: string): Promise<EventItem[]> => {
   return new Promise((resolve) => {
     // Имитация задержки сети
     setTimeout(() => {
-      resolve(Array.from({ length: 10 }, getRandomEvent));
+      const events = Array.from({ length: 10 }, () => ({
+        ...getRandomEvent(),
+        category: category, // добавляем категорию к событию
+      }));
+      resolve(events);
     }, 800); // 0.8 секунды задержки
   });
 };
