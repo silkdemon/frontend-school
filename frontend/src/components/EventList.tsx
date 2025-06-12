@@ -8,10 +8,14 @@ interface EventListProps {
 }
 
 const EventList: React.FC<EventListProps> = ({ events, openModal }) => {
+  if (events.length === 0) {
+    return <div className="empty-events">Нет доступных событий</div>;
+  }
+
   return (
-    <section className="news">
+    <section className="events">
       {events.map((event, index) => (
-        <EventCard key={index} event={event} openModal={openModal} />
+        <EventCard key={`${event.date}-${index}`} event={event} openModal={openModal} />
       ))}
     </section>
   );
