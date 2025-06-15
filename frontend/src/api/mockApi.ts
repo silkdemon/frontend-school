@@ -36,6 +36,7 @@ const getRandomEvent = (): EventItem => {
   const authors = Array.from({ length: numAuthors }, getRandomName);
 
   return {
+    id: getRandomString(),
     date: getRandomDate(),
     likes: getRandomNumberInRange(0, 100),
     title: getRandomString(),

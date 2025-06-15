@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/Modal.css"; // Импортируем стили
+import axios, { AxiosError } from "axios"; // или используйте fetch
 import { CloseModalFunction, EventItem } from "../types/types";
 
 interface ModalProps {
@@ -11,16 +11,45 @@ const Modal: React.FC<ModalProps> = ({ event, closeModal }) => {
   const [format, setFormat] = useState<"online" | "offline">("online");
   const [participant, setParticipant] = useState("");
   const [comment, setComment] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = () => {
-    // Здесь будет логика отправки данных
-    console.log({
-      eventId: event.title,
-      format,
-      participant,
-      comment,
-    });
-    closeModal();
+  const handleSubmit = async () => {
+    if (!participant.trim()) {
+      setError("Укажите, кто пойдет на мероприятие");
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      // Отправка данных на сервер
+      const response = await axios.post(
+        "https://api.example.com/registrations",
+        {
+          eventId: event.id || event.title, // Лучше использовать уникальный ID
+          format,
+          participant: participant.trim(),
+          comment: comment.trim(),
+          registrationDate: new Date().toISOString(),
+        }
+      );
+
+      if (response.status === 201) {
+        closeModal();
+        // Можно добавить уведомление об успешной регистрации
+      } else {
+        throw new Error("Ошибка при регистрации");
+      }
+    } catch (err) {
+      const registrationError = err as AxiosError;
+    
+      setError(registrationError.response?.statusText || "Не удалось зарегистрироваться");
+      console.error("Registration error:", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -36,13 +65,18 @@ const Modal: React.FC<ModalProps> = ({ event, closeModal }) => {
               onClick={closeModal}
             />
           </div>
+
+          {error && <div className="modal-error">{error}</div>}
+
           <p className="modal-subtitle">
             Выберите необходимые параметры мероприятия
           </p>
+
           <div className="modal-main modal-subcontent">
             <h2 className="modal-news-title">{event.title}</h2>
             <p className="modal-news-subtitle">{event.description}</p>
           </div>
+
           <ul className="chips modal-subcontent">
             <li
               className={`modal-chip ${
@@ -61,6 +95,7 @@ const Modal: React.FC<ModalProps> = ({ event, closeModal }) => {
               Оффлайн: офис Нагатино
             </li>
           </ul>
+
           <div className="modal-subcontent input-with-label">
             <label className="label-text">Кто пойдет на мероприятие</label>
             <input
@@ -69,8 +104,10 @@ const Modal: React.FC<ModalProps> = ({ event, closeModal }) => {
               className="input"
               value={participant}
               onChange={(e) => setParticipant(e.target.value)}
+              required
             />
           </div>
+
           <div className="modal-subcontent input-with-label">
             <label className="label-text">Комментарий</label>
             <textarea
@@ -78,16 +115,24 @@ const Modal: React.FC<ModalProps> = ({ event, closeModal }) => {
               className="input comment-textarea"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-            ></textarea>
+            />
           </div>
+
           <div className="modal-subcontent">
             <button
-              className="register-active-btn register-btn"
+              className={`register-active-btn register-btn ${
+                isLoading ? "loading" : ""
+              }`}
               onClick={handleSubmit}
+              disabled={isLoading}
             >
-              Зарегистрироваться
+              {isLoading ? "Отправка..." : "Зарегистрироваться"}
             </button>
-            <button className="cancel-btn" onClick={closeModal}>
+            <button
+              className="cancel-btn"
+              onClick={closeModal}
+              disabled={isLoading}
+            >
               Отменить
             </button>
           </div>

@@ -1,4 +1,5 @@
 export interface EventItem {
+  id: string;
     date: string;
     likes: number;
     title: string;
